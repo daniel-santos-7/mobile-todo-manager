@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PopupMenu from './PopupMenu';
 
-export default function NotebookItem({ notebook }) {
+export default function Notebook({ name, createdAt, onRename, onRemove }) {
 
   function handleItemActions(event, index) {
     
@@ -11,11 +11,11 @@ export default function NotebookItem({ notebook }) {
       
       switch (index) {
         case 0:
-          console.log('Renomeando');
+          onRename();
           break;
         
         case 1:
-          console.log('Removendo');
+          onRemove();
           break;
       
         default:
@@ -30,8 +30,8 @@ export default function NotebookItem({ notebook }) {
     <View style={styles.itemContainer}>
         <MaterialCommunityIcons name="notebook" size={28} style={styles.icons} color="#11a"/>
         <View style={styles.itemText}>
-          <Text style={styles.itemTitle}>{notebook}</Text>
-          <Text style={styles.itemSubtitle}>21/02/2020</Text>
+          <Text style={styles.itemTitle}>{name}</Text>
+          <Text style={styles.itemSubtitle}>{createdAt}</Text>
         </View>
         <PopupMenu actions={['Renomear', 'Remover']} onPress={handleItemActions}/>
     </View>

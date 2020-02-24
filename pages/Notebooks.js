@@ -1,27 +1,23 @@
-import React from 'react';
-import {StyleSheet, FlatList,View, Text} from 'react-native';
-import NotebookItem from "../components/NotebookItem";
+import React, { useState } from 'react';
+import {Modal, Text} from 'react-native';
+import Container from "../components/Container";
+import CustomFlatList from "../components/CustomFlatList";
+import Notebook from "../components/Notebook";
+import FormModal from '../components/FormModal';
+import ActionButton from "react-native-action-button";
 
 export default function Notebooks() {
-  
-  const data = ['Caderno 1', 'Caderno 2', 'Caderno 3'];
-  
-  return (
-    <View style={styles.container}>
-      <FlatList style={styles.notebookList} data={data} renderItem={({item})=> <NotebookItem notebook={item}/>}/>
-    </View>
-  );
-}
+    
+  const [modalvisibility, setModalVisibility] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  notebookList: {
-    padding: 10,
-    width: '100%',
-  }
-});
+  return (
+    <Container>
+      <CustomFlatList data={['Caderno 1', 'Caderno 2']}>
+        { (notebook)=> <Notebook name={notebook}/> }
+      </CustomFlatList>
+      <FormModal visible={modalvisibility} buttonText="Salvar"/>
+      <ActionButton buttonColor="#11e" onPress={()=> setModalVisibility(true)}/>
+    </Container>
+  );
+
+}

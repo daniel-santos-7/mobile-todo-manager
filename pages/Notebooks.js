@@ -1,27 +1,30 @@
 import React from 'react';
-import {StyleSheet, FlatList,View, Text} from 'react-native';
-import NotebookItem from "../components/NotebookItem";
+import Layout from '../components/Layout';
+import Notebook from '../components/Notebook';
+import {connect} from 'react-redux';
+import { addNotebook, removeNotebook } from '../store/notebooks';
 
-export default function Notebooks() {
-  
-  const data = ['Caderno 1', 'Caderno 2', 'Caderno 3'];
-  
+function Notebooks({notebooks, addNotebook, removeNotebook, navigation}) {
+
+  const naviagateToListsPage = (notebook)=> navigation.navigate('Lists', {notebook});
+
+  const renderNotebooks = (notebook)=> <Notebook notebook={notebook} onRemove={removeNotebook} onPress={naviagateToListsPage}/>;
+
   return (
-    <View style={styles.container}>
-      <FlatList style={styles.notebookList} data={data} renderItem={({item})=> <NotebookItem notebook={item}/>}/>
-    </View>
+    <Layout
+      listData={notebooks}
+      renderListItem={renderNotebooks}
+      onModalSubmit={addNotebook}
+      modalTitle="Novo Caderno"
+    />
   );
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  notebookList: {
-    padding: 10,
-    width: '100%',
-  }
+const mapStateToProps = (state) => ({
+
+  notebooks: Object.values(state.notebooks) 
+
 });
+
+export default connect(mapStateToProps,{addNotebook, removeNotebook})(Notebooks);

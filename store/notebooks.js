@@ -36,7 +36,7 @@ function addListId(state={}, action) {
 
     const { notebookId } = action.payload;
     const notebook = {...state[notebookId]};
-    notebook.lists =  addSubitemId(notebook.list, action);
+    notebook.lists =  addSubitemId(notebook.lists, action);
     const newState = {...state, [notebookId]: notebook};
     return newState;
 

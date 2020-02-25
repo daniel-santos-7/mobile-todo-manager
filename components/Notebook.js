@@ -3,30 +3,29 @@ import {StyleSheet} from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Item from './Item';
 
-export default function List({ list, onRemove, onPress }) {
+export default function Notebook({ notebook, onRemove, onPress }) {
 
-  const {id,name, createdAt} = list;
+  const {id, name, createdAt} = notebook;
   const createdAtDate = (new Date(createdAt)).toLocaleDateString();
-  const companion = <MaterialCommunityIcons name="format-list-checks" size={28} style={styles.icon}/>
+
+  const companion = <MaterialCommunityIcons name="notebook" size={28} style={styles.icon} color="#11a"/>
 
   return (
     <Item
-      item={list}
       title={name}
       subtitle={createdAtDate}
       companion={companion}
-      onPress={()=>onPress(list)}
       onRemove={()=>onRemove(id)}
-    />
-  );
+      onPress={()=>onPress(notebook)}
+    />);
 }
 
 const styles = StyleSheet.create({
   icon: {
     margin: 5,
-    borderRadius: 5,
+    borderRadius: 100,
     color: '#fff',
-    backgroundColor: '#933',
+    backgroundColor: '#11e',
     padding: 10,
   }
 });

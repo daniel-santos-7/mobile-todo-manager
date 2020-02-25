@@ -1,18 +1,14 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import Routes from './Routes';
+import {Provider} from 'react-redux';
+import store from './store';
+import { YellowBox } from 'react-native';
 
 export default function App() {
+  YellowBox.ignoreWarnings(['Warning: componentWillReceiveProps']);
   return (
-    <Routes/>
+    <Provider store={store}>
+      <Routes/>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

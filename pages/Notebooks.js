@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
-import {Modal, Text} from 'react-native';
-import Container from "../components/Container";
-import CustomFlatList from "../components/CustomFlatList";
-import Notebook from "../components/Notebook";
-import FormModal from '../components/FormModal';
-import ActionButton from "react-native-action-button";
+import React from 'react';
+import Layout from '../components/Layout';
+import Notebook from '../components/Notebook';
+import {connect} from 'react-redux';
+import { addNotebook, removeNotebook } from '../store/notebooks';
 
-export default function Notebooks() {
-    
-  const [modalvisibility, setModalVisibility] = useState(false);
+function Notebooks({notebooks, addNotebook, removeNotebook, navigation}) {
+
+  const naviagateToListsPage = (notebook)=> navigation.navigate('Lists', {notebook: notebook.id});
+
+  const renderNotebooks = (notebook)=> <Notebook notebook={notebook} onRemove={removeNotebook} onPress={naviagateToListsPage}/>;
 
   return (
-    <Container>
-      <CustomFlatList data={['Caderno 1', 'Caderno 2']}>
-        { (notebook)=> <Notebook name={notebook}/> }
-      </CustomFlatList>
-      <FormModal visible={modalvisibility} buttonText="Salvar"/>
-      <ActionButton buttonColor="#11e" onPress={()=> setModalVisibility(true)}/>
-    </Container>
+    <Layout
+      listData={notebooks}
+      renderListItem={renderNotebooks}
+      onModalSubmit={addNotebook}
+    />
   );
 
 }
+
+const mapStateToProps = (state) => ({
+
+  notebooks: Object.values(state.notebooks) 
+
+});
+
+export default connect(mapStateToProps,{addNotebook, removeNotebook})(Notebooks);

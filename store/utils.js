@@ -19,7 +19,8 @@ export function deleteItem(state={}, action) {
 }
 
 export function addSubitemId(state=[],action) {
-    return state.concat(action.payload.id);
+    const newState = state.concat(action.payload.id);
+    return newState;
 }
 
 export function removeSubitemId(state=[],action) {

@@ -41,7 +41,6 @@ describe('notebooks reducers tests', ()=> {
         const newList = addListAction.payload;
         const newState = notebooks(state,addListAction);
         expect(newState['ABCD1234'].lists).toContain(newList.id);
-
     });
 
     test('remove list test',()=>{

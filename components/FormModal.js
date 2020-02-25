@@ -1,17 +1,30 @@
 import React from 'react';
-import {Modal,View,Text,TextInput, StyleSheet, TouchableHighlight} from 'react-native';
+import {Modal,View,Text,TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
-export default function FormModal({visible, inputText, onInputTextChange, buttonText, onButtonPress}) {
-  return (
-    <Modal animationType="fade" transparent={true} visible={visible}>
-        <View style={styles.formContainer}>
-            <TextInput style={styles.input}/>
-            <TouchableHighlight style={styles.button}>
-                <Text style={styles.buttonText}>{buttonText}</Text>
-            </TouchableHighlight>
-        </View>
-    </Modal>
-  );
+export default function FormModal({visible, onSubmit}) {
+
+    const [text, setText] = React.useState('');
+
+    function handlePress() {
+        
+        if (text === '') {
+            return;
+        }
+
+        onSubmit(text);
+        setText('');
+    }
+
+    return (
+        <Modal animationType="fade" transparent={true} visible={visible}>
+            <View style={styles.formContainer}>
+                <TextInput style={styles.input} onChangeText={setText}>{text}</TextInput>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText} onPress={handlePress}>Salvar</Text>
+                </TouchableOpacity>
+            </View>
+        </Modal>
+    );
 }
 
 const styles = StyleSheet.create({

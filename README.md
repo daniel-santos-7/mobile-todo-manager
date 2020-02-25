@@ -1,8 +1,8 @@
 # Aplicativo para Gerenciamento de Tarefas
 
-:iphone: Aplicativo mobile completo para gerenciamento de tarefas (*todo app*) desenvolvido com React Native.
+Aplicativo mobile completo para gerenciamento de tarefas (*todo app*) desenvolvido com React Native.
 
-![IMC App](/.github/preview.png)
+<div align="center"><img src=".github/preview.png" alt="preview" width="500px"/></div>
 
 :rocket: **Tecnologias**:
 

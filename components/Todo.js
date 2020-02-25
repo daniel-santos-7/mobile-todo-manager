@@ -13,7 +13,7 @@ export default function List({ todo, onRemove, onChange }) {
             item={todo}
             title={text}
             companion={companion}
-            onRemove={onRemove}
+            onRemove={()=>onRemove(id)}
         />
     );
 }

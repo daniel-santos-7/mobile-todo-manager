@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '../components/Layout';
 import {connect} from 'react-redux';
 import { addTodo, removeTodo, changeTodosCheckedProp } from '../store/todos';
-import { Text } from 'react-native';
 import Todo from '../components/Todo';
 
 function Todos({todos, addTodo, removeTodo, toggleTodo}) {
@@ -14,6 +13,7 @@ function Todos({todos, addTodo, removeTodo, toggleTodo}) {
         listData={todos}
         renderListItem={renderTodos}
         onModalSubmit={addTodo}
+        modalTitle="Nova Tarefa"
         />
     );
 

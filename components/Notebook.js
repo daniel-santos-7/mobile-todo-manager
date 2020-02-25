@@ -5,19 +5,18 @@ import Item from './Item';
 
 export default function Notebook({ notebook, onRemove, onPress }) {
 
-  const {name, createdAt} = notebook;
+  const {id, name, createdAt} = notebook;
   const createdAtDate = (new Date(createdAt)).toLocaleDateString();
 
   const companion = <MaterialCommunityIcons name="notebook" size={28} style={styles.icon} color="#11a"/>
 
   return (
     <Item
-      item={notebook}
       title={name}
       subtitle={createdAtDate}
       companion={companion}
-      onRemove={onRemove}
-      onPress={onPress}
+      onRemove={()=>onRemove(id)}
+      onPress={()=>onPress(notebook)}
     />);
 }
 

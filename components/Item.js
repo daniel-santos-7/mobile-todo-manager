@@ -2,19 +2,19 @@ import React from 'react';
 import {View, Text, TouchableNativeFeedback, StyleSheet} from 'react-native';
 import PopupMenu from './PopupMenu';
 
-export default function Notebook({ item, title, subtitle, companion, onRemove, onPress }) {
+export default function Notebook({title, subtitle, companion, onRemove, onPress }) {
 
   function handlePopupActions(event, index) {
     
     if (event === 'itemSelected' && index===0 && onRemove) {
-      onRemove(item.id);
+      onRemove();
     }
 
   }
 
   function handlePress() {
       if (onPress) {
-          onPress(item);
+          onPress();
       }
   }
 

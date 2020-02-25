@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal,View,Text,TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
-export default function FormModal({visible, onSubmit}) {
+export default function FormModal({title,visible, onSubmit}) {
 
     const [text, setText] = React.useState('');
 
@@ -17,11 +17,14 @@ export default function FormModal({visible, onSubmit}) {
 
     return (
         <Modal animationType="fade" transparent={true} visible={visible}>
-            <View style={styles.formContainer}>
-                <TextInput style={styles.input} onChangeText={setText}>{text}</TextInput>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText} onPress={handlePress}>Salvar</Text>
-                </TouchableOpacity>
+            <View style={styles.background}>
+                <View style={styles.container}>
+                    <Text style={styles.title}>{title}</Text>
+                    <TextInput style={styles.input} onChangeText={setText}>{text}</TextInput>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText} onPress={handlePress}>Salvar</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </Modal>
     );
@@ -29,12 +32,26 @@ export default function FormModal({visible, onSubmit}) {
 
 const styles = StyleSheet.create({
 
-    formContainer: {
+    background: {
         flex: 1,
         paddingHorizontal: 25,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(250,250,250,.9)',
+        backgroundColor: 'rgba(50,50,50,.5)',
+    },
+
+    title: {
+        fontFamily: 'Roboto',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin: 10,
+        fontSize: 15,
+    },
+
+    container: {
+        backgroundColor: '#fff',
+        width: '100%',
+        padding: 5
     },
 
     input: {
@@ -42,13 +59,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 2,
         padding: 2,
-        width: '100%',
         backgroundColor: '#fff',
         borderColor: '#ccc',
     },
 
     button: {
-        width: '100%',
         padding: 2,
         backgroundColor: '#505',
         padding: 10,

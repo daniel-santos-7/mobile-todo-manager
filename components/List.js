@@ -5,7 +5,7 @@ import Item from './Item';
 
 export default function List({ list, onRemove, onPress }) {
 
-  const {name, createdAt} = list;
+  const {id,name, createdAt} = list;
   const createdAtDate = (new Date(createdAt)).toLocaleDateString();
   const companion = <MaterialCommunityIcons name="format-list-checks" size={28} style={styles.icon}/>
 
@@ -15,8 +15,8 @@ export default function List({ list, onRemove, onPress }) {
       title={name}
       subtitle={createdAtDate}
       companion={companion}
-      onPress={onPress}
-      onRemove={onRemove}
+      onPress={()=>onPress(list)}
+      onRemove={()=>onRemove(id)}
     />
   );
 }

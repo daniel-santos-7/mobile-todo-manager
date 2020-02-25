@@ -15,6 +15,7 @@ function Notebooks({notebooks, addNotebook, removeNotebook, navigation}) {
       listData={notebooks}
       renderListItem={renderNotebooks}
       onModalSubmit={addNotebook}
+      modalTitle="Novo Caderno"
     />
   );
 

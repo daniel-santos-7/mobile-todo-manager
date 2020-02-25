@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text, View} from 'react-native';
 import Layout from '../components/Layout';
 import {connect} from 'react-redux';
 import { addList, removeList } from '../store/lists';
@@ -16,6 +15,7 @@ function Lists({lists, addList, removeList, navigation}) {
             listData={lists}
             renderListItem={renderLists}
             onModalSubmit={addList}
+            modalTitle="Nova Lista de Tarefas"
         />
     );
 

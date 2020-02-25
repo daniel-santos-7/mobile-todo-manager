@@ -1,33 +1,32 @@
 import React from 'react';
-import {View, Text, TouchableNativeFeedback} from 'react-native';
+import {StyleSheet} from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import PopupMenu from './PopupMenu';
-import styles from './itemStyles';
+import Item from './Item';
 
 export default function Notebook({ notebook, onRemove, onPress }) {
 
-  const {id, name, createdAt} = notebook;
+  const {name, createdAt} = notebook;
   const createdAtDate = (new Date(createdAt)).toLocaleDateString();
 
-  function handlePopupActions(event, index) {
-    
-    if (event === 'itemSelected' && index===0) {
-      onRemove(id);
-    }
-
-  }
+  const companion = <MaterialCommunityIcons name="notebook" size={28} style={styles.icon} color="#11a"/>
 
   return (
-    <TouchableNativeFeedback onPress={()=>onPress(notebook)}>
-        <View style={styles.itemContainer}>
-        <MaterialCommunityIcons name="notebook" size={28} style={styles.icons} color="#11a"/>
-          <View style={styles.itemText}>
-            <Text style={styles.itemTitle}>{name}</Text>
-            <Text style={styles.itemSubtitle}>{createdAtDate}</Text>
-          </View>
-        <PopupMenu actions={["Remover"]} onPress={handlePopupActions}/>
-        </View>
-    </TouchableNativeFeedback>
-  );
+    <Item
+      item={notebook}
+      title={name}
+      subtitle={createdAtDate}
+      companion={companion}
+      onRemove={onRemove}
+      onPress={onPress}
+    />);
 }
 
+const styles = StyleSheet.create({
+  icon: {
+    margin: 5,
+    borderRadius: 100,
+    color: '#fff',
+    backgroundColor: '#11e',
+    padding: 10,
+  }
+});

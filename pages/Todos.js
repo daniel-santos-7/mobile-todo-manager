@@ -1,12 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import {connect} from 'react-redux';
-import { addTodo, removeTodo } from '../store/todos';
+import { addTodo, removeTodo, changeTodosCheckedProp } from '../store/todos';
 import { Text } from 'react-native';
+import Todo from '../components/Todo';
 
-function Todos({todos, addTodo, removeTodo}) {
+function Todos({todos, addTodo, removeTodo, toggleTodo}) {
 
-    const renderTodos = (todo)=> <Text>{todo.name}</Text>;
+    const renderTodos = (todo)=> <Todo todo={todo} onChange={toggleTodo} onRemove={removeTodo}/>;
 
     return (
         <Layout
@@ -19,12 +20,13 @@ function Todos({todos, addTodo, removeTodo}) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    todos: state.lists[ownProps.route.params.list].todos.map(id=>state.todos[id])
+    todos: state.lists[ownProps.route.params.list.id].todos.map(id=>state.todos[id])
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    addTodo: (text)=> dispatch(addTodo(text, ownProps.route.params.list)),
-    removeTodo: (id)=> dispatch(removeTodo(id, ownProps.route.params.list))
+    addTodo: (text)=> dispatch(addTodo(text, ownProps.route.params.list.id)),
+    removeTodo: (id)=> dispatch(removeTodo(id, ownProps.route.params.list.id)),
+    toggleTodo: (id)=> dispatch(changeTodosCheckedProp(id))
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(Notebooks);
+export default connect(mapStateToProps,mapDispatchToProps)(Todos);

@@ -6,7 +6,7 @@ import { addNotebook, removeNotebook } from '../store/notebooks';
 
 function Notebooks({notebooks, addNotebook, removeNotebook, navigation}) {
 
-  const naviagateToListsPage = (notebook)=> navigation.navigate('Lists', {notebook: notebook.id});
+  const naviagateToListsPage = (notebook)=> navigation.navigate('Lists', {notebook});
 
   const renderNotebooks = (notebook)=> <Notebook notebook={notebook} onRemove={removeNotebook} onPress={naviagateToListsPage}/>;
 

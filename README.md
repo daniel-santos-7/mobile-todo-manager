@@ -2,7 +2,7 @@
 
 Aplicativo mobile completo para gerenciamento de tarefas (*todo app*) desenvolvido com React Native.
 
-![preview](.github/preview.png)
+![preview](.github/preview.jpg)
 
 :rocket: **Tecnologias**:
 

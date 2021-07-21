@@ -1,4 +1,4 @@
-# Aplicativo para Gerenciamento de Tarefas
+# :heavy_check_mark: Aplicativo para Gerenciamento de Tarefas
 
 Aplicativo mobile completo para gerenciamento de tarefas (*todo app*) desenvolvido com React Native.
 
@@ -22,4 +22,4 @@ Aplicativo mobile completo para gerenciamento de tarefas (*todo app*) desenvolvi
 
 ---
 
-:coffee: Desenvolvido por Daniel Santos
+<p align="center">:coffee: Desenvolvido por Daniel Santos</p>
